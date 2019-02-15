@@ -1,6 +1,7 @@
 package data_structure;
 
-public class MyQueueTest {
+public class Josephus {
+
     public static void main(String[] args) {
         int total = Integer.valueOf(args[0]);
         int step = Integer.valueOf(args[1]);
