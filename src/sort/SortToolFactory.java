@@ -13,6 +13,7 @@ public class SortToolFactory {
         register(Merge.class);
         register(MergeBU.class);
         register(Quick.class);
+        register(Heap.class);
     }
     private static void register(String toolName, Class tool) {
         toolMap.put(toolName, tool);

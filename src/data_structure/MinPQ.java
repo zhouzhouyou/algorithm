@@ -1,16 +1,16 @@
 package data_structure;
 
-public class MaxPQ<Key extends Comparable<Key>> {
+public class MinPQ<Key extends Comparable<Key>> {
     private Key[] pq;
     private int N = 0;
 
     @SuppressWarnings("unchecked")
-    public MaxPQ(int max) {
+    public MinPQ(int max) {
         pq = (Key[]) new Comparable[max + 1];
     }
 
     @SuppressWarnings("unchecked")
-    public MaxPQ(Key[] a) {
+    public MinPQ(Key[] a) {
         pq = (Key[]) new Comparable[a.length + 1];
         for (Key key : a) {
             insert(key);
@@ -22,16 +22,16 @@ public class MaxPQ<Key extends Comparable<Key>> {
         swim(N);
     }
 
-    public Key max() {
+    public Key min() {
         return pq[1];
     }
 
-    public Key delMax() {
-        Key max = pq[1];
+    public Key delMin() {
+        Key min = pq[1];
         exchange(1, N--);
         pq[N + 1] = null;
         sink(1);
-        return max;
+        return min;
     }
 
     public boolean isEmpty() {
@@ -53,7 +53,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
     }
 
     private void swim(int k) {
-        while (k > 1 && less(k / 2, k)) {
+        while (k > 1 && less(k, k / 2)) {
             exchange(k / 2, k);
             k /= 2;
         }
@@ -62,8 +62,8 @@ public class MaxPQ<Key extends Comparable<Key>> {
     private void sink(int k) {
         while (2 * k <= N) {
             int j = 2 * k;
-            if (j < N && less(j, j + 1)) j++;
-            if (!less(k, j)) break;
+            if (j < N && less(j + 1, j)) j++;
+            if (!less(j, k)) break;
             exchange(k, j);
             k = j;
         }
