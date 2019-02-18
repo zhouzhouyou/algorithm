@@ -1,55 +1,34 @@
 package data_structure;
 
-public class MaxPQ<Key extends Comparable<Key>> {
-    private Key[] pq;
-    private int N = 0;
-
+public class MaxPQ<Key extends Comparable<Key>> extends PriorityQueue<Key>{
     @SuppressWarnings("unchecked")
-    public MaxPQ(int max) {
-        pq = (Key[]) new Comparable[max + 1];
+    public MaxPQ(int capacity) {
+        keys = (Key[]) new Comparable[capacity + 1];
     }
 
     @SuppressWarnings("unchecked")
     public MaxPQ(Key[] a) {
-        pq = (Key[]) new Comparable[a.length + 1];
+        keys = (Key[]) new Comparable[a.length + 1];
         for (Key key : a) {
             insert(key);
         }
     }
 
     public void insert(Key v) {
-        pq[++N] = v;
+        keys[++N] = v;
         swim(N);
     }
 
     public Key max() {
-        return pq[1];
+        return keys[1];
     }
 
     public Key delMax() {
-        Key max = pq[1];
+        Key max = keys[1];
         exchange(1, N--);
-        pq[N + 1] = null;
+        keys[N + 1] = null;
         sink(1);
         return max;
-    }
-
-    public boolean isEmpty() {
-        return N == 0;
-    }
-
-    public int size() {
-        return N;
-    }
-
-    private boolean less(int i, int j) {
-        return pq[i].compareTo(pq[j]) < 0;
-    }
-
-    private void exchange(int i, int j) {
-        Key t = pq[i];
-        pq[i] = pq[j];
-        pq[j] = t;
     }
 
     private void swim(int k) {
