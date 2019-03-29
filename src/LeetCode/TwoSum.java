@@ -19,8 +19,6 @@ public class TwoSum {
         return solution;
     }
 
-
-
     public static void main(String[] args) {
         int[] nums = {2, 5, 7, 9, 10, 9, 20};
         int[] answer;
