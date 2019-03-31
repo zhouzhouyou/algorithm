@@ -1,6 +1,20 @@
 package LeetCode;
 
 public class ReverseInteger {
+//    Given a 32-bit signed integer, reverse digits of an integer.
+//
+//            Example 1:
+//
+//    Input: 123
+//    Output: 321
+//    Example 2:
+//
+//    Input: -123
+//    Output: -321
+//    Example 3:
+//
+//    Input: 120
+//    Output: 21
     public int reverse(int x) {
         long out = 0;
         boolean flag = x < 0;
