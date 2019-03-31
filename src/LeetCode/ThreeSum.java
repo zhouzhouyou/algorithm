@@ -3,9 +3,13 @@ package LeetCode;
 import java.util.*;
 
 public class ThreeSum {
-//    Given an array nums of n integers,
-//    are there elements a, b, c in nums such that a + b + c = 0?
-//    Find all unique triplets in the array which gives the sum of zero.
+    /*
+        https://leetcode.com/problems/3sum/
+        Given an array nums of n integers,
+        are there elements a, b, c in nums such that a + b + c = 0?
+        Find all unique triplets in the array which gives the sum of zero.
+     */
+
 
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
