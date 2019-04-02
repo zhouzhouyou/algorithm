@@ -1,6 +1,9 @@
 package LeetCode;
 
-public class lengthOfLongestSubstring {
+import java.util.HashSet;
+import java.util.Set;
+
+public class LengthOfLongestSubstring {
     /*
         https://leetcode.com/problems/longest-substring-without-repeating-characters/
         Given a string, find the length of the longest substring without repeating characters.
@@ -22,6 +25,22 @@ public class lengthOfLongestSubstring {
      */
 
     public int lengthOfLongestSubstring(String s) {
-        return 0;
+        int max = 0, i = 0, j = 0;
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        while (i < n && j < n) {
+            if (!set.contains(s.charAt(j))) {
+                set.add(s.charAt(j++));
+                max = Math.max(max, j - i);
+            } else {
+                set.remove(s.charAt(i++));
+            }
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+        String a = "abcadefga";
+        System.out.println(new LengthOfLongestSubstring().lengthOfLongestSubstring(a));
     }
 }
