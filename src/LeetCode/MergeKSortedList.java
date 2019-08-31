@@ -1,14 +1,6 @@
 package LeetCode;
 
 public class MergeKSortedList {
-    public class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode h = new ListNode(0);
         ListNode ans = h;
