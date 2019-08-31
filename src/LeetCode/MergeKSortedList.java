@@ -9,34 +9,39 @@ public class MergeKSortedList {
         }
     }
 
-    public ListNode mergeKLists(ListNode[] lists) {
-        if (lists.length == 0) return null;
-        ListNode head = null, rear = null;
-        while (true) {
-            int minValue = Integer.MAX_VALUE;
-            int location = 0;
-            boolean flag = true;
-            for (int i = 0; i < lists.length; i++) {
-                if (lists[i] == null) continue;
-                flag = false;
-                ListNode node = lists[i];
-                if (node.val < minValue) {
-                    minValue = node.val;
-                    location = i;
-                }
-            }
-            ListNode node = lists[location];
-            if (head == null) {
-                head = node;
-                rear = head;
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode h = new ListNode(0);
+        ListNode ans = h;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                h.next = l1;
+                l1 = l1.next;
             } else {
-                rear.next = node;
-                rear = rear.next;
+                h.next = l2;
+                l2 = l2.next;
             }
-            if (flag) return head;
-            lists[location] = lists[location].next;
-
+            h = h.next;
         }
+        if(l1==null){
+            h.next=l2;
+        }
+        if(l2==null){
+            h.next=l1;
+        }
+        return ans.next;
+    }
+
+    public ListNode mergeKLists(ListNode[] lists) {
+        int length = lists.length;
+        if (length == 0) return null;
+        int interval = 1;
+        while (interval < length) {
+            for (int i = 0; i + interval < length ; i = i + interval * 2) {
+                lists[i] = mergeTwoLists(lists[i], lists[i+interval]);
+            }
+            interval *= 2;
+        }
+        return lists[0];
     }
 
     public void test() {
