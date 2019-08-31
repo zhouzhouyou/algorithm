@@ -14,14 +14,6 @@ public class AddTwoNumbers {
         Output: 7 -> 0 -> 8
         Explanation: 342 + 465 = 807.
      */
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode out = new ListNode(0);
